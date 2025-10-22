@@ -1,3 +1,4 @@
+-- Active: 1761175326518@@127.0.0.1@3306@GESTION_VUELOS
 CREATE PROCEDURE GetAllChairs ()
 BEGIN 
     SELECT * FROM vuelos JOIN asientos ON asientos.vuelos_id = vuelos.id ;

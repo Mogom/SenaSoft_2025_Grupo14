@@ -1,4 +1,4 @@
--- Active: 1761166194037@@127.0.0.1@3306@GESTION_VUELOS
+-- Active: 1761175326518@@127.0.0.1@3306@GESTION_VUELOS
 -- Insertar 10 personas (usuarios, capitanes y pasajeros)
 INSERT INTO personas (id, primer_apellido, segundo_apellido, nombres, fecha_nacimiento, genero, tipo_documento, numero_documento, telefono, correo, rol) VALUES
 (1, 'García', 'López', 'Carlos Antonio', '1985-03-15', 'M', 'DNI', '12345678', '555-0101', 'carlos.garcia@email.com', 'CAPITAN'),

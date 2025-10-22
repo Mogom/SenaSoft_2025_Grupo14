@@ -1,7 +1,11 @@
+#Imagen de nginx
 FROM nginx:alpine
 
+#Directorio de trabajo de nginx
 COPY ./public /usr/share/nginx/html
 
+#Puerto de nginx dentro de docker
 EXPOSE 80
 
+#Comando de inicializacion nginx
 CMD ["nginx", "-g", "daemon off;"]
