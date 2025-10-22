@@ -72,6 +72,28 @@ class FlightService extends Base {
             db.closeConnection();
         }
     }
+
+    async getFlightByForm(data) {
+        const by = [
+            data.ciudad_origen,
+            data.ciudad_destino,
+            data.fecha_salida,
+            data.cantidad_sillas,
+        ];
+        const { db, query } = this.assistDB();
+        try {
+            const result = await query("CALL GetFlightByForm(?)",[by]);
+            const data = this.validateResult(result);
+            return {
+                message: 'Flights retrieved succesfully',
+                result: data
+            }
+        } catch (err) {
+            this.handleError(err);
+        } finally {
+            db.closeConnection();
+        }
+    }
 }
 
 module.exports = FlightService

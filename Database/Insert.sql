@@ -20,17 +20,17 @@ INSERT INTO capitanes (id, numero_licencia, horas_vuelo, personas_id) VALUES
 (3, 'LIC-003-2019', 5200, 5);
 
 -- Insertar 10 usuarios
-INSERT INTO usuarios (id, personas_id) VALUES
-(1, 2),
-(2, 4),
-(3, 6),
-(4, 7),
-(5, 8),
-(6, 9),
-(7, 10),
-(8, 11),
-(9, 12),
-(10, 1);
+INSERT INTO usuarios (id, personas_id, contraseña) VALUES
+(1, 2,"123"),
+(2, 4,"123"),
+(3, 6,"123"),
+(4, 7,"123"),
+(5, 8,"123"),
+(6, 9,"123"),
+(7, 10,"123"),
+(8, 11,"123"),
+(9, 12,"123"),
+(10, 1,"123");
 
 -- Insertar 10 pasajeros
 INSERT INTO pasajeros (id, condicion_infante, personas_id) VALUES
@@ -62,8 +62,8 @@ INSERT INTO vuelos (id, numero_vuelo, fecha_salida, hora_salida, ciudad_origen, 
 (7, 401, '2024-02-04', '09:00:00', 'Lima', 'Miami', 1, 1, '16:00:00', '2024-02-04'),
 (8, 402, '2024-02-04', '18:00:00', 'Miami', 'Lima', 1, 2, '01:00:00', '2024-02-05'),
 (9, 501, '2024-02-05', '07:30:00', 'Lima', 'Ciudad de México', 2, 3, '12:00:00', '2024-02-05'),
-(10, 502, '2024-02-05', '15:00:00', 'Ciudad de México', 'Lima', 2, 1, '19:30:00', '2024-02-05');
-
+(10, 502, '2024-02-05', '15:00:00', 'Ciudad de México', 'Lima', 2, 1, '19:30:00', '2024-02-05'),
+(11, 101, '2024-02-01', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2024-02-01');
 -- Insertar 60 asientos para cada vuelo (total 600 asientos)
 INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valor) VALUES
 -- Vuelo 1 (60 asientos)
@@ -97,7 +97,11 @@ INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valo
 (541, 10, 'DISPONIBLE', 'A1', 'ECONOMICA', 320),
 (542, 10, 'DISPONIBLE', 'A2', 'ECONOMICA', 320),
 (543, 10, 'DISPONIBLE', 'C1', 'EJECUTIVA', 520),
-(544, 10, 'DISPONIBLE', 'C2', 'EJECUTIVA', 520);
+(544, 10, 'DISPONIBLE', 'C2', 'EJECUTIVA', 520),
+(41, 11, 'DISPONIBLE', 'A1', 'ECONOMICA', 320),
+(42, 11, 'DISPONIBLE', 'A2', 'ECONOMICA', 320),
+(43, 11, 'DISPONIBLE', 'C1', 'EJECUTIVA', 520),
+(44, 11, 'DISPONIBLE', 'C2', 'EJECUTIVA', 520);
 
 -- Insertar 5 reservas
 INSERT INTO reservas (id, codigo_reserva, estado, usuarios_id) VALUES

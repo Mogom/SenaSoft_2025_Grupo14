@@ -47,4 +47,15 @@ router.get("/free/chairs:by", async(req,res) => {
     }
 })
 
+router.post("/search/form", async(req,res) => {
+    const body = req.body
+    try {
+        const data = await flight.getFlightByForm(body);
+        res.json(data)
+        console.log('Vuelos consumidos correctamente')
+    } catch (err){
+        res.status(err.status || 500).json({ error: err.message});
+    }
+})
+
 module.exports = router

@@ -63,6 +63,7 @@ CREATE TABLE asientos (
 CREATE TABLE usuarios (
   id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   personas_id int(11) NOT NULL,
+  contraseña VARCHAR (100) NOT NULL,
   FOREIGN KEY (personas_id) REFERENCES personas (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ); 
 
