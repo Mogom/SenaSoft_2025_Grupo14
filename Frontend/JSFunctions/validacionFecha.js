@@ -5,7 +5,6 @@ let btnIdaVuelta = document.querySelector("#idaVuelta");
 // Seleccionar el formulario
 let formVuelos = document.querySelector("#frmVuelo");
 let inpFechaIda = document.querySelector("#fechaIda");
-console.log(inpFechaIda)
 
 // Funcion de validacion rango
 function validarRangoFechas(inpFecha) {
