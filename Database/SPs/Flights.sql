@@ -15,3 +15,10 @@ BEGIN
     SELECT * FROM vuelos WHERE id = p_id;
 END
 
+CREATE PROCEDURE GetFlightByDate (
+    IN p_date DATE
+)
+BEGIN
+    SELECT * FROM vuelos WHERE fecha_salida = p_date;
+END
+
