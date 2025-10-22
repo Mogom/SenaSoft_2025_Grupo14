@@ -1,26 +1,53 @@
-// Seleccionar los radioButton
+// Seleccionar los radio buttons
 let btnIda = document.querySelector("#ida");
 let btnIdaVuelta = document.querySelector("#idaVuelta");
 
-// Seleccionar el form
+// Seleccionar el formulario
 let formVuelos = document.querySelector("#frmVuelo");
-console.log(formVuelos)
+let inpFechaIda = document.querySelector("#fechaIda");
 
-btnIda.addEventListener('change', () => {
-    // Si el radio btn IDA y Vuelta esta seleccionado
-    if (btnIda.checked) {
-        // Creo el dateTimepicker
-        let inpFechaVuelta = document.createElement('input');
-        inpFechaVuelta.setAttribute("type", "date");
-
+btnIda.addEventListener("change", () => {
+  // Si el radio button de "Ida" está seleccionado
+  if (btnIda.checked) {
+    // Eliminar la columna de "Fecha de vuelta" si existe
+    let fechaRow = document.querySelector("#fechaRow");
+    let fechaVueltaCol = document.querySelector("#fechaVueltaCol");
+    if (fechaVueltaCol) {
+      fechaRow.removeChild(fechaVueltaCol);
     }
-})
+  }
+});
+
 btnIdaVuelta.addEventListener("change", () => {
-  // Si el radio btn IDA y Vuelta esta seleccionado
+  // Si el radio button de "Ida y vuelta" está seleccionado
   if (btnIdaVuelta.checked) {
-    
-    // Creo el dateTimepicker
-    let inpFechaVuelta = document.createElement("input");
-    inpFechaVuelta.setAttribute("type", "date");
+    // Crear la columna para "Fecha de vuelta"
+    let fechaRow = document.querySelector("#fechaRow");
+
+    // Verificar si la columna de "Fecha de vuelta" ya existe
+    if (!document.querySelector("#fechaVueltaCol")) {
+      let colFechaVuelta = document.createElement("div");
+      colFechaVuelta.classList.add("col-sm-2");
+      colFechaVuelta.id = "fechaVueltaCol";
+
+      // Crear el label para "Fecha de vuelta"
+      let lblFechaVuelta = document.createElement("label");
+
+      lblFechaVuelta.setAttribute("for", "fechaVuelta");
+      lblFechaVuelta.textContent = "Vuelta";
+
+      // Crear el input de "Fecha de vuelta"
+      let inpFechaVuelta = document.createElement("input");
+      inpFechaVuelta.setAttribute("type", "date");
+      inpFechaVuelta.setAttribute("id", "fechaVuelta");
+      inpFechaVuelta.classList.add("form-control");
+
+      // Insertar el label y el input dentro de la nueva columna
+      colFechaVuelta.appendChild(lblFechaVuelta);
+      colFechaVuelta.appendChild(inpFechaVuelta);
+
+      // Insertar la nueva columna al lado de la columna de "Fecha de ida"
+      fechaRow.insertBefore(colFechaVuelta, fechaRow.children[2]); // Insertar después de la columna de "Origen"
+    }
   }
 });

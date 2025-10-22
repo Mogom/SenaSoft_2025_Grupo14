@@ -7,8 +7,9 @@
 body{
     width: 100vw;
     height: 100vh;
-    /* overflow-y: hidden; */
 }
+
+
 
 .Test{
     background-color: aqua;
@@ -20,7 +21,7 @@ body{
 
 .sidebar-header{
      background-color: var(--bg-side-bar);
-     height: 20rem;
+    
 }
 
 .sidebar-body{

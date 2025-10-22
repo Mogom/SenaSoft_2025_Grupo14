@@ -54,12 +54,15 @@
     <link rel="stylesheet" href="./css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
 
-
     <!-- css personal -->
     <link rel="stylesheet" href="../Styles/index.css" />
 
     <!-- FaviIcon -->
-     <link rel="shortcut icon" href="./assets/img/icono-avion-removebg-preview.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="./assets/img/icono-avion-removebg-preview.png"
+      type="image/x-icon"
+    />
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -98,26 +101,26 @@
       <!--begin::Sidebar-->
       <aside class="app-sidebar sidebar-body shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
-        <div class="sidebar-brand sidebar-header">
-          <div class="row d-flex flex-column">
+         <div class="sidebar-brand sidebar-header">
+        
             <div class="text-center">
               <img
                 src="./assets/img/icono-avion-removebg-preview.png"
                 alt="icono-avion"
-                class="img-fluid rounded-5 shadow"
+                class="img-fluid w-75 rounded-5 shadow"
               />
             </div>
-            <div class="text-center">
-              <span class="brand-text fw-light">SenaSoft-Airlines</span>
+               <div class="text-center">
+             <span class="brand-text fw-light">SenaSoft-Airlines</span>
             </div>
-          </div>
-
+        
+        
           <!--begin::Brand Link-->
           <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-
+           
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -174,9 +177,7 @@
         <!--begin::App Content Header-->
         <div class="app-content-header">
           <!--begin::Container-->
-          <div class="container-fluid">
-         
-          </div>
+          <div class="container-fluid"></div>
           <!--end::Container-->
         </div>
         <!--end::App Content Header-->
@@ -213,7 +214,8 @@
                     </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row" id="fechaRow">
+                    <!-- Columna para Origen y Destino -->
                     <div class="col-sm-6">
                       <div class="input-group mt-4">
                         <span class="input-group-text"
@@ -238,6 +240,8 @@
                         />
                       </div>
                     </div>
+
+                    <!-- Columna para Fecha Ida -->
                     <div class="col-sm-2">
                       <label for="fechaIda">Ida</label>
                       <input
@@ -247,12 +251,19 @@
                         id="fechaIda"
                       />
                     </div>
+
+                    <!-- Columna para Personas -->
                     <div class="col-sm-2">
                       <label for="">Personas</label>
                       <div class="input-group">
                         <span class="input-group-text"
-                          ><i class="fa-solid fa-user-plus"></i></span>
-                        <select class="form-select" name="personas" id="personas">
+                          ><i class="fa-solid fa-user-plus"></i
+                        ></span>
+                        <select
+                          class="form-select"
+                          name="personas"
+                          id="personas"
+                        >
                           <option value="1" selected>1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -261,8 +272,15 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2 mt-4">
-                        <button class="btn btn-primary w-100 fw-bolder">Buscar</button>
+
+                    <!-- Columna para el botón Buscar -->
+                    <div class="col-sm-12 mt-4">
+                      <button
+                       
+                        class="btn btn-primary w-100 fw-bolder"
+                      >
+                        Buscar
+                      </button>
                     </div>
                   </div>
                 </form>
@@ -311,7 +329,7 @@
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="./js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
-    
+
     <!-- OPTIONAL SCRIPTS -->
     <!-- Font awesome -->
     <script
@@ -319,7 +337,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- JS personal -->
-     <script src="../JSFunctions/app.js"></script>
+    <script src="../JSFunctions/app.js"></script>
   </body>
   <!--end::Body-->
 </html>
