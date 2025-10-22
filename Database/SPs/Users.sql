@@ -58,20 +58,11 @@ BEGIN
     SELECT * FROM usuarios WHERE id = LAST_INSERT_ID();
 END
 
-CALL `RegisterUser`(
-    'Salazar', 
-    'Vargas', 
-    'Carmen Rosa', 
-    '1996-09-14', 
-    'F', 
-    'DNI', 
-    '67890123', 
-    '+51-955-888888', 
-    'carmen.salazar@email.com', 
-    'USUARIO',
-    '123'
-);
+CREATE PROCEDURE SearchFlightsBy (
+    IN p_id INT
+)
+BEGIN
+    SELECT 
+END
 
-
-/* CREATE PROCEDURE  */
 

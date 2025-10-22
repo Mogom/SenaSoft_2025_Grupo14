@@ -4,7 +4,7 @@ const config ={
     "port":"http://localhost:3000"
 }
 
-async function postData(url = '', data = {}) {
+export async function postData(url = '', data = {}) {
   const response = await fetch(config.port+url, {
     method: 'POST',
     headers: {
@@ -18,7 +18,7 @@ async function postData(url = '', data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-async function getData(url = '') {
+export async function getData(url = '') {
   const response = await fetch(config.port+url, {
     method: 'GET',
     headers: {
@@ -40,5 +40,3 @@ async function getData(url = '') {
 //   });
 
 
-
-module.exports = {getData, postData}

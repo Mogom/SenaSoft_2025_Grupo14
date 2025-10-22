@@ -1,0 +1,3 @@
+npm i cors dotenv express-rate-limit express-rate-limiter mysql2
+
+npm i --save-dev nodemon
