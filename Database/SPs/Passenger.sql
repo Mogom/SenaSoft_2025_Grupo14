@@ -1,3 +1,4 @@
+-- Active: 1761175326518@@127.0.0.1@3306@GESTION_VUELOS
 CREATE PROCEDURE RegisterPassenger(
     IN p_primer_apellido VARCHAR(75),
     IN p_segundo_apellido VARCHAR(75),
