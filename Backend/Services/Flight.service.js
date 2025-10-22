@@ -55,6 +55,23 @@ class FlightService extends Base {
             db.closeConnection();
         }
     }
+
+    async getFreeChairs(id) {
+        const by = id.replace(":","").replace(" ","")
+        const { db, query } = this.assistDB();
+        try {
+            const result = await query("CALL GetFreeChairs(?)",[by]);
+            const data = this.validateResult(result);
+            return {
+                message: 'Flights retrieved succesfully',
+                result: data
+            }
+        } catch (err) {
+            this.handleError(err);
+        } finally {
+            db.closeConnection();
+        }
+    }
 }
 
 module.exports = FlightService
