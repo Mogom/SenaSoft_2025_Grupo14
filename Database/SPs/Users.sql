@@ -1,4 +1,4 @@
--- Active: 1761166194037@@127.0.0.1@3306@GESTION_VUELOS
+-- Active: 1759201386306@@127.0.0.1@3306@GESTION_VUELOS
 
 CREATE PROCEDURE GetAllUsers ()
 BEGIN
@@ -58,11 +58,28 @@ BEGIN
     SELECT * FROM usuarios WHERE id = LAST_INSERT_ID();
 END
 
-CREATE PROCEDURE SearchFlightsBy (
-    IN p_id INT
+CREATE PROCEDURE SearchFlightsByUser(
+    IN p_user_id INT
 )
 BEGIN
     SELECT 
+        v.*,
+        r.codigo_reserva,
+        r.estado as estado_reserva,
+        a.codigo_asiento,
+        a.clase,
+        a.valor,
+        p.total as monto_pago,
+        p.metodo_pago,
+        CONCAT(per.nombres, ' ', per.primer_apellido) as nombre_pasajero
+    FROM vuelos v
+    INNER JOIN asientos a ON v.id = a.vuelos_id
+    INNER JOIN asignacion_asiento aa ON a.id = aa.asientos_id
+    INNER JOIN pasajeros pas ON aa.pasajeros_id = pas.id
+    INNER JOIN personas per ON pas.personas_id = per.id
+    INNER JOIN reservas r ON aa.reservas_id = r.id
+    INNER JOIN usuarios u ON r.usuarios_id = u.id
+    LEFT JOIN pagos p ON r.id = p.reservas_id
+    WHERE u.id = p_user_id
+    ORDER BY v.fecha_salida DESC, v.hora_salida DESC;
 END
-
-
