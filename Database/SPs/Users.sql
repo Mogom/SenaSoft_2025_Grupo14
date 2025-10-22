@@ -71,7 +71,7 @@ BEGIN
         a.valor,
         p.total as monto_pago,
         p.metodo_pago,
-        CONCAT(per.nombres, ' ', per.primer_apellido) as nombre_pasajero
+        CONCAT(per.nombres, ' ', per.primer_apellido) as nombre_pagador
     FROM vuelos v
     INNER JOIN asientos a ON v.id = a.vuelos_id
     INNER JOIN asignacion_asiento aa ON a.id = aa.asientos_id

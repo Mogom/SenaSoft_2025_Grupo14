@@ -25,3 +25,13 @@ BEGIN
     SELECT * FROM pasajeros WHERE id = (LAST_INSERT_ID());
 END
 
+CREATE PROCEDURE RegistReserve (
+    IN p_user_id INT,
+    IN p_codigo_reserva VARCHAR (50),
+    IN p_estado VARCHAR (50)
+)
+BEGIN
+   INSERT INTO reservas(codigo_reserva,estado,usuarios_id)
+   VALUES (p_codigo_reserva, p_estado, p_user_id);
+END
+
