@@ -11,7 +11,7 @@ class Base {
         if (!result || !result[0]){
             throw {message: 'No data found', status: 404}
         }
-
+        return result[0];
     }
 
     // Funcion global que permite verificar y retornar errores despues de un 

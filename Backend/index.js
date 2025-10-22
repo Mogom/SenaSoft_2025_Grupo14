@@ -9,13 +9,17 @@ const app = express()
 const cors = require('cors')
 const { corsOption } = require("./Middlewares/corsOption")
 
+const {limiter} = require('./Middlewares/rateLimiter')
+
 const users = require('./Routes/users.route')
+const flights = require('./Routes/flight.route')
 
 app.use(cors(corsOption))
 app.use(express.json())
-
+app.use(limiter)
 
 app.use('/users', users)
+app.use('/flights', flights)
 
 // Ruta de prueba
 
