@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+  database:
+    image: mariadb
+    container_name: GESTION_VUELOS
+    ports:
+      - "3306:3306"
+    volumes:
+      - GESTION_VUELOS-data:/var/lib/mysql
+    environment:
+      - MARIADB_USER=root
+      - MARIADB_ROOT_PASSWORD=123
+      - MARIADB_DATABASE=GESTION_VUELOS
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: DockerFile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Backend:/app
+    environment:
+      - NODE_ENV=development
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: DockerFile
+    ports:
+      - "8088:80"
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+    environment:
+      - NODE_ENV=development
+      
+
+volumes:
+  SENA-SOFT:

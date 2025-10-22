@@ -115,7 +115,12 @@ INSERT INTO reservas (id, codigo_reserva, estado, usuarios_id) VALUES
 (2, 'RES-002-2025', 'CONFIRMADA', 2),
 (3, 'RES-003-2025', 'PENDIENTE', 3),
 (4, 'RES-004-2025', 'CONFIRMADA', 4),
-(5, 'RES-005-2025', 'CANCELADA', 5);
+(5, 'RES-005-2025', 'CANCELADA', 5),
+(11, 'RES-001-2025', 'CONFIRMADA', 1),
+(12, 'RES-002-2025', 'CONFIRMADA', 2),
+(13, 'RES-003-2025', 'PENDIENTE', 3),
+(14, 'RES-004-2025', 'CONFIRMADA', 4),
+(15, 'RES-005-2025', 'CANCELADA', 5);
 
 -- Insertar asignaciones de asientos
 INSERT INTO asignacion_asiento (pasajeros_id, asientos_id, reservas_id) VALUES
