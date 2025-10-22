@@ -1,0 +1,30 @@
+:root{
+    --bg-side-bar: #023838;
+    --bg-side-body: #025959;
+}
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+    /* overflow-y: hidden; */
+}
+
+.Test{
+    background-color: aqua;
+}
+
+.bg-side-bar{
+    background-color: var(--bg-side-bar);
+}
+
+.sidebar-header{
+     background-color: var(--bg-side-bar);
+     height: 20rem;
+}
+
+.sidebar-body{
+    background-color: var(--bg-side-body);
+    
+}
+

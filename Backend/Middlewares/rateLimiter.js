@@ -1,3 +1,4 @@
+// dependencia para asignar limite de peticiones
 const rateLimit = require('express-rate-limit')
 
 const limiter = rateLimit({
