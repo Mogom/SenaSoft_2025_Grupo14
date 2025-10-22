@@ -64,6 +64,11 @@ INSERT INTO vuelos (id, numero_vuelo, fecha_salida, hora_salida, ciudad_origen, 
 (9, 501, '2024-02-05', '07:30:00', 'Lima', 'Ciudad de México', 2, 3, '12:00:00', '2024-02-05'),
 (10, 502, '2024-02-05', '15:00:00', 'Ciudad de México', 'Lima', 2, 1, '19:30:00', '2024-02-05'),
 (11, 101, '2024-02-01', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2024-02-01');
+
+INSERT INTO vuelos (id, numero_vuelo, fecha_salida, hora_salida, ciudad_origen, ciudad_destino, aviones_id, capitanes_id, hora_llegada, fecha_llegada) VALUES
+(21, 101, '2025-10-22', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2025-10-22'),
+(22, 102, '2025-10-22', '10:30:00', 'Bogotá', 'Lima', 1, 2, '13:30:00', '2025-10-22'),
+(23, 201, '2025-10-23', '14:00:00', 'Lima', 'Santiago', 2, 3, '18:30:00', '2025-10-23');
 -- Insertar 60 asientos para cada vuelo (total 600 asientos)
 INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valor) VALUES
 -- Vuelo 1 (60 asientos)
