@@ -27,7 +27,6 @@ CREATE PROCEDURE RegisterPerson (
     IN p_rol VARCHAR (45)
 )
 BEGIN
-
     INSERT INTO personas (primer_apellido, segundo_apellido, nombres, fecha_nacimiento, genero, tipo_documento, numero_documento, telefono, correo, rol) 
     VALUES (p_primer_apellido,p_segundo_apellido,p_nombres,p_fecha_nacimiento,p_genero,p_tipo_documento,p_numero_documento,p_telefono,p_correo,p_rol);
 

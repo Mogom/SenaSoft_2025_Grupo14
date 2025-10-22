@@ -13,7 +13,7 @@ class Database {
     // Funcion primaria que define las credenciales de la base de datos
     createConnection  () {
         // Variable que retorna true o false dependiendo si el proyecto
-        // corre en un entorno docker o de manera aparte
+        // corre en un entorno docker o de manera local
         const isDocker = process.env.NODE_ENV === 'development'
         return mysql.createConnection({
             host: isDocker ? process.env.DOCKER_HOST : process.env.LOCAL_HOST,
