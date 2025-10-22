@@ -33,8 +33,6 @@
       onload="this.media='all'"
     />
     <!--end::Fonts-->
-    <!-- FaviIcon -->
-     <link rel="shortcut icon" href="./assets/img/icono-avion-removebg-preview.png" type="image/x-icon">
 
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link
@@ -56,24 +54,12 @@
     <link rel="stylesheet" href="./css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
 
-    <!-- apexcharts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-      crossorigin="anonymous"
-    />
-
-    <!-- jsvectormap -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
-      integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
-      crossorigin="anonymous"
-    />
 
     <!-- css personal -->
     <link rel="stylesheet" href="../Styles/index.css" />
+
+    <!-- FaviIcon -->
+     <link rel="shortcut icon" href="./assets/img/icono-avion-removebg-preview.png" type="image/x-icon">
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -121,17 +107,17 @@
                 class="img-fluid rounded-5 shadow"
               />
             </div>
-               <div class="text-center">
-             <span class="brand-text fw-light">SenaSoft-Airlines</span>
+            <div class="text-center">
+              <span class="brand-text fw-light">SenaSoft-Airlines</span>
             </div>
           </div>
-        
+
           <!--begin::Brand Link-->
           <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-           
+
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -150,14 +136,14 @@
               id="navigation"
             >
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="./index.html" class="nav-link">
                   <i class="fa-solid fa-house"></i>
                   <p>Home</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="./vuelos.html" class="nav-link">
+                <a href="./vuelos.html" class="nav-link active">
                   <i class="fa-solid fa-plane"></i>
                   <p>Buscar vuelos</p>
                 </a>
@@ -189,21 +175,7 @@
         <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h3 class="mb-0">Home</h3>
-              </div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Dashboard
-                  </li>
-                </ol>
-              </div>
-            </div>
-            <!--end::Row-->
+         
           </div>
           <!--end::Container-->
         </div>
@@ -214,79 +186,86 @@
           <div class="container-fluid">
             <div class="card">
               <div class="card-body">
-                <div class="text-center">
-                  <h1>SENA/Soft</h1>
-                  <h2>AirLines</h2>
-                </div>
+                <form action="" id="frmVuelo">
+                  <div class="">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="opcionVuelo"
+                        id="ida"
+                        value="ida"
+                        checked
+                      />
+                      <label class="form-check-label" for="ida">Ida</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="opcionVuelo"
+                        id="idaVuelta"
+                        value="idaVuelta"
+                      />
+                      <label class="form-check-label" for="idaVuelta"
+                        >Ida y vuelta</label
+                      >
+                    </div>
+                  </div>
 
-                <div class="row text-center mt-4">
-                  <h4>La mejor aerolinea para viajar</h4>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mt-5">
-              <div class="card-group">
-                <div class="card">
-                  <img
-                    src="./assets/img/card-home.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="input-group mt-4">
+                        <span class="input-group-text"
+                          ><i class="fa-solid fa-plane-departure"></i
+                        ></span>
+                        <input
+                          type="text"
+                          id="origen"
+                          class="form-control"
+                          placeholder="Origen"
+                          aria-label="origen"
+                        />
+                        <span class="input-group-text"
+                          ><i class="fa-solid fa-plane-arrival"></i
+                        ></span>
+                        <input
+                          id="destino"
+                          type="text"
+                          class="form-control"
+                          placeholder="Destino"
+                          aria-label="Destino"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <label for="fechaIda">Ida</label>
+                      <input
+                        class="form-control"
+                        type="date"
+                        name="fechaIda"
+                        id="fechaIda"
+                      />
+                    </div>
+                    <div class="col-sm-2">
+                      <label for="">Personas</label>
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="fa-solid fa-user-plus"></i></span>
+                        <select class="form-select" name="personas" id="personas">
+                          <option value="1" selected>1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 mt-4">
+                        <button class="btn btn-primary w-100 fw-bolder">Buscar</button>
+                    </div>
                   </div>
-                  <div class="card-footer">
-                    <small class="text-body-secondary"
-                      >Last updated 3 mins ago</small
-                    >
-                  </div>
-                </div>
-                <div class="card">
-                  <img
-                    src="./assets/img/card-home-2.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This card has supporting text below as a natural lead-in
-                      to additional content.
-                    </p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-body-secondary"
-                      >Last updated 3 mins ago</small
-                    >
-                  </div>
-                </div>
-                <div class="card">
-                  <img
-                    src="./assets/img/card-home-3.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This card has even
-                      longer content than the first to show that equal height
-                      action.
-                    </p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-body-secondary"
-                      >Last updated 3 mins ago</small
-                    >
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -332,12 +311,15 @@
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="./js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
-   
+    
+    <!-- OPTIONAL SCRIPTS -->
     <!-- Font awesome -->
     <script
       src="https://kit.fontawesome.com/4c0cbe7815.js"
       crossorigin="anonymous"
     ></script>
+    <!-- JS personal -->
+     <script src="../JSFunctions/app.js"></script>
   </body>
   <!--end::Body-->
 </html>
