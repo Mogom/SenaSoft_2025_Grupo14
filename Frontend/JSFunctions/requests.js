@@ -9,7 +9,7 @@ export async function postData(url = '', data = {}) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': ''
+      'x-api-key': config["api-key"]
     },
     redirect: 'follow', // manual, *follow, error
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url

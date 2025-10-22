@@ -275,9 +275,10 @@
 
                     <!-- Columna para el botón Buscar -->
                     <div class="col-sm-12 mt-4">
-                      <button onclick="seleccionarVuelos()"
+                      <button
                        
                         class="btn btn-primary w-100 fw-bolder"
+                        id="btnBuscar"
                       >
                         Buscar
                       </button>
@@ -337,7 +338,8 @@
       crossorigin="anonymous"
     ></script>
     <!-- JS personal -->
-    <script type="module" src="../JSFunctions/FlightController.js"></script>
+     <script src="../JSFunctions/validacionFecha.js"></script>
+    <script type="module" src="../JSFunctions/seleccionarVuelos.js"></script>
   </body>
   <!--end::Body-->
 </html>
