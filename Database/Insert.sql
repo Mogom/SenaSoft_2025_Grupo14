@@ -9,7 +9,7 @@ INSERT INTO personas (id, primer_apellido, segundo_apellido, nombres, fecha_naci
 (7, 'Flores', 'Castro', 'Miguel Ángel', '1993-12-10', 'M', 'DNI', '78901234', '555-0107', 'miguel.flores@email.com', 'USUARIO'),
 (8, 'Rojas', 'Mendoza', 'Laura Patricia', '1987-06-08', 'F', 'DNI', '89012345', '555-0108', 'laura.rojas@email.com', 'USUARIO'),
 (9, 'Morales', 'Ortega', 'Javier Eduardo', '1991-08-14', 'M', 'DNI', '90123456', '555-0109', 'javier.morales@email.com', 'USUARIO'),
-(10, 'Castillo', 'Reyes', 'Daniela Fernanda', '1994-02-28', 'F', 'DNI', '01234567', '555-0110', 'daniela.castillo@email.com', 'USUARIO'),
+(10, 'Castillo', 'Reyes', 'Daniela Fernanda', '1994-10-28', 'F', 'DNI', '01234567', '555-0110', 'daniela.castillo@email.com', 'USUARIO'),
 (11, 'González', 'Nuñez', 'Pedro Pablo', '1982-05-20', 'M', 'DNI', '11223344', '555-0111', 'pedro.gonzalez@email.com', 'PASAJERO'),
 (12, 'Salazar', 'Jiménez', 'Carmen Rosa', '1996-03-12', 'F', 'DNI', '22334455', '555-0112', 'carmen.salazar@email.com', 'PASAJERO');
 
@@ -53,17 +53,17 @@ INSERT INTO aviones (id, matricula, tipo_avion, marca, modelo, capacidad) VALUES
 
 -- Insertar 10 vuelos
 INSERT INTO vuelos (id, numero_vuelo, fecha_salida, hora_salida, ciudad_origen, ciudad_destino, aviones_id, capitanes_id, hora_llegada, fecha_llegada) VALUES
-(1, 101, '2024-02-01', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2024-02-01'),
-(2, 102, '2024-02-01', '10:30:00', 'Bogotá', 'Lima', 1, 2, '13:30:00', '2024-02-01'),
-(3, 201, '2024-02-02', '14:00:00', 'Lima', 'Santiago', 2, 3, '18:30:00', '2024-02-02'),
-(4, 202, '2024-02-02', '20:00:00', 'Santiago', 'Lima', 2, 1, '23:30:00', '2024-02-02'),
-(5, 301, '2024-02-03', '06:00:00', 'Lima', 'Buenos Aires', 3, 2, '12:00:00', '2024-02-03'),
-(6, 302, '2024-02-03', '16:00:00', 'Buenos Aires', 'Lima', 3, 3, '22:00:00', '2024-02-03'),
-(7, 401, '2024-02-04', '09:00:00', 'Lima', 'Miami', 1, 1, '16:00:00', '2024-02-04'),
-(8, 402, '2024-02-04', '18:00:00', 'Miami', 'Lima', 1, 2, '01:00:00', '2024-02-05'),
-(9, 501, '2024-02-05', '07:30:00', 'Lima', 'Ciudad de México', 2, 3, '12:00:00', '2024-02-05'),
-(10, 502, '2024-02-05', '15:00:00', 'Ciudad de México', 'Lima', 2, 1, '19:30:00', '2024-02-05'),
-(11, 101, '2024-02-01', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2024-02-01');
+(1, 101, '2025-10-22', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2025-10-22'),
+(2, 102, '2025-10-23', '10:30:00', 'Bogotá', 'Lima', 1, 2, '13:30:00', '2025-10-23'),
+(3, 201, '2025-10-22', '14:00:00', 'Lima', 'Santiago', 2, 3, '18:30:00', '2025-10-25'),
+(4, 202, '2025-10-24', '20:00:00', 'Santiago', 'Lima', 2, 1, '23:30:00', '2025-10-25'),
+(5, 301, '2025-10-25', '06:00:00', 'Lima', 'Buenos Aires', 3, 2, '12:00:00', '2025-10-24'),
+(6, 302, '2025-10-25', '16:00:00', 'Buenos Aires', 'Lima', 3, 3, '22:00:00', '2025-10-24'),
+(7, 401, '2025-10-26', '09:00:00', 'Lima', 'Miami', 1, 1, '16:00:00', '2025-10-24'),
+(8, 402, '2025-10-23', '18:00:00', 'Miami', 'Lima', 1, 2, '01:00:00', '2025-10-24'),
+(9, 501, '2025-10-24', '07:30:00', 'Lima', 'Ciudad de México', 2, 3, '12:00:00', '2025-10-24'),
+(10, 502, '2025-10-23', '15:00:00', 'Ciudad de México', 'Lima', 2, 1, '19:30:00', '2025-10-24'),
+(11, 101, '2025-10-22', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2025-10-24');
 
 INSERT INTO vuelos (id, numero_vuelo, fecha_salida, hora_salida, ciudad_origen, ciudad_destino, aviones_id, capitanes_id, hora_llegada, fecha_llegada) VALUES
 (21, 101, '2025-10-22', '08:00:00', 'Lima', 'Bogotá', 1, 1, '11:00:00', '2025-10-22'),
@@ -110,11 +110,11 @@ INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valo
 
 -- Insertar 5 reservas
 INSERT INTO reservas (id, codigo_reserva, estado, usuarios_id) VALUES
-(1, 'RES-001-2024', 'CONFIRMADA', 1),
-(2, 'RES-002-2024', 'CONFIRMADA', 2),
-(3, 'RES-003-2024', 'PENDIENTE', 3),
-(4, 'RES-004-2024', 'CONFIRMADA', 4),
-(5, 'RES-005-2024', 'CANCELADA', 5);
+(1, 'RES-001-2025', 'CONFIRMADA', 1),
+(2, 'RES-002-2025', 'CONFIRMADA', 2),
+(3, 'RES-003-2025', 'PENDIENTE', 3),
+(4, 'RES-004-2025', 'CONFIRMADA', 4),
+(5, 'RES-005-2025', 'CANCELADA', 5);
 
 -- Insertar asignaciones de asientos
 INSERT INTO asignacion_asiento (pasajeros_id, asientos_id, reservas_id) VALUES
@@ -126,11 +126,11 @@ INSERT INTO asignacion_asiento (pasajeros_id, asientos_id, reservas_id) VALUES
 
 -- Insertar pagos
 INSERT INTO pagos (id, reservas_id, total, metodo_pago, fecha, hora) VALUES
-(1, 1, 250, 'TARJETA_CREDITO', '2024-01-25', '10:30:00'),
-(2, 2, 450, 'TARJETA_DEBITO', '2024-01-26', '14:15:00'),
-(3, 3, 280, 'PAYPAL', '2024-01-27', '09:45:00'),
-(4, 4, 480, 'TARJETA_CREDITO', '2024-01-28', '16:20:00'),
-(5, 5, 320, 'TRANSFERENCIA', '2024-01-29', '11:00:00');
+(1, 1, 250, 'TARJETA_CREDITO', '2025-01-25', '10:30:00'),
+(2, 2, 450, 'TARJETA_DEBITO', '2025-01-26', '14:15:00'),
+(3, 3, 280, 'PAYPAL', '2025-01-27', '09:45:00'),
+(4, 4, 480, 'TARJETA_CREDITO', '2025-01-28', '16:20:00'),
+(5, 5, 320, 'TRANSFERENCIA', '2025-01-29', '11:00:00');
 
 -- Insertar tickets
 INSERT INTO tickets (id, asientos_id, pagos_id) VALUES
