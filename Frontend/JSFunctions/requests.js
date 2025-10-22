@@ -1,6 +1,11 @@
 // Funcion global para ejecutar metodos POST:
+const config ={
+    "api-key":"vuelos-x-api-key",
+    "port":"http://localhost:3000"
+}
+
 async function postData(url = '', data = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(config.port+url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -14,20 +19,20 @@ async function postData(url = '', data = {}) {
 }
 
 async function getData(url = '') {
-  const response = await fetch(url, {
+  const response = await fetch(config.port+url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': 'vuelos-x-api-key'
+      'x-api-key': config["api-key"]
     },
   });
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-getData('http://localhost:3000/flights/get:1')
-  .then(data => {
-    console.log(data); // JSON data parsed by `data.json()` call
-});
+// getData('http://localhost:3000/flights/get:1')
+//   .then(data => {
+//     console.log(data); // JSON data parsed by `data.json()` call
+// });
 
 // postData('http://localhost:3000/users', { answer: 42 })
 //   .then(data => {
@@ -36,3 +41,4 @@ getData('http://localhost:3000/flights/get:1')
 
 
 
+module.exports = {getData, postData}
