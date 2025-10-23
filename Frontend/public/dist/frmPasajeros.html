@@ -33,6 +33,12 @@
       onload="this.media='all'"
     />
     <!--end::Fonts-->
+    <!-- FaviIcon -->
+    <link
+      rel="shortcut icon"
+      href="./assets/img/icono-avion-removebg-preview.png"
+      type="image/x-icon"
+    />
 
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link
@@ -54,19 +60,28 @@
     <link rel="stylesheet" href="./css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
 
+    <!-- apexcharts -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
+      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
+      crossorigin="anonymous"
+    />
+
+    <!-- jsvectormap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
+      integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
+      crossorigin="anonymous"
+    />
+
     <!-- css personal -->
     <link rel="stylesheet" href="../Styles/index.css" />
-
-    <!-- FaviIcon -->
-    <link
-      rel="shortcut icon"
-      href="./assets/img/icono-avion-removebg-preview.png"
-      type="image/x-icon"
-    />
   </head>
   <!--end::Head-->
   <!--begin::Body-->
-  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary body-frm-pasajeros">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
@@ -87,9 +102,6 @@
             </li>
             <li class="nav-item d-none d-md-block">
               <a href="./index.html" class="nav-link">Home</a>
-            </li>
-            <li id="auth" class="nav-item d-none d-md-block">
-              <a href="./login.html" class="nav-link">Login</a>
             </li>
           </ul>
           <!--end::Start Navbar Links-->
@@ -124,14 +136,14 @@
         id="navigation"
       >
         <li class="nav-item mb-1">
-          <a href="./index.html" class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
+          <a href="./index.html" class="nav-link active d-flex align-items-center gap-2 rounded px-3 py-2">
             <i class="fa-solid fa-house fs-5"></i>
             <span>Inicio</span>
           </a>
         </li>
 
         <li class="nav-item mb-1">
-          <a href="./vuelos.html" class="nav-link active d-flex align-items-center gap-2 rounded px-3 py-2">
+          <a href="./vuelos.html" class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
             <i class="fa-solid fa-plane fs-5"></i>
             <span>Buscar vuelos</span>
           </a>
@@ -161,117 +173,23 @@
         <!--begin::App Content Header-->
         <div class="app-content-header">
           <!--begin::Container-->
-          <div class="container-fluid"></div>
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Registro de Pasajeros</h3>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
           <!--end::Container-->
         </div>
         <!--end::App Content Header-->
         <!--begin::App Content-->
         <div class="app-content">
           <!--begin::Container-->
-          <div class="container-fluid">
-            <div id="buscarVuelo" class="card">
-              <div class="card-body">
-                <form action="" id="frmVuelo">
-                  <div class="">
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="opcionVuelo"
-                        id="ida"
-                        value="ida"
-                        checked
-                      />
-                      <label class="form-check-label" for="ida">Ida</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="opcionVuelo"
-                        id="idaVuelta"
-                        value="idaVuelta"
-                      />
-                      <label class="form-check-label" for="idaVuelta"
-                        >Ida y vuelta</label
-                      >
-                    </div>
-                  </div>
-
-                  <div class="row" id="fechaRow">
-                    <!-- Columna para Origen y Destino -->
-                    <div class="col-sm-6">
-                      <div class="input-group mt-4">
-                        <span class="input-group-text"
-                          ><i class="fa-solid fa-plane-departure"></i
-                        ></span>
-                        <input
-                          type="text"
-                          id="origen"
-                          class="form-control"
-                          placeholder="Origen"
-                          aria-label="origen"
-                        />
-                        <span class="input-group-text"
-                          ><i class="fa-solid fa-plane-arrival"></i
-                        ></span>
-                        <input
-                          id="destino"
-                          type="text"
-                          class="form-control"
-                          placeholder="Destino"
-                          aria-label="Destino"
-                        />
-                      </div>
-                    </div>
-
-                    <!-- Columna para Fecha Ida -->
-                    <div class="col-sm-2">
-                      <label for="fechaIda">Ida</label>
-                      <input
-                        class="form-control"
-                        type="date"
-                        name="fechaIda"
-                        id="fechaIda"
-                      />
-                    </div>
-
-                    <!-- Columna para Personas -->
-                    <div class="col-sm-2">
-                      <label for="">Personas</label>
-                      <div class="input-group">
-                        <span class="input-group-text"
-                          ><i class="fa-solid fa-user-plus"></i
-                        ></span>
-                        <select
-                          class="form-select"
-                          name="personas"
-                          id="personas"
-                        >
-                          <option value="1" selected>1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Columna para el botón Buscar -->
-                    <div class="col-sm-12 mt-4">
-                      <button
-                       
-                        class="btn btn-primary w-100 fw-bolder"
-                        id="btnBuscar"
-                      >
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div id="vuelos"></div>
+          <div id="capaForm" class="container-fluid">
+        
           </div>
           <!--end::Container-->
         </div>
@@ -286,9 +204,7 @@
         <!--begin::Copyright-->
         <strong>
           Copyright &copy; 2014-2025&nbsp;
-          <a href="#" class="text-decoration-none"
-            >SenaSoft.com</a
-          >.
+          <a href="#" class="text-decoration-none">SenaSoft.com</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->
@@ -316,17 +232,12 @@
     <script src="./js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
 
-    <!-- OPTIONAL SCRIPTS -->
     <!-- Font awesome -->
     <script
       src="https://kit.fontawesome.com/4c0cbe7815.js"
       crossorigin="anonymous"
     ></script>
-    <!-- JS personal -->
-     <script src="../JSFunctions/validacionFecha.js"></script>
-    <script type="module" src="../JSFunctions/seleccionarVuelos.js"></script>
-    <!-- Sweet alert -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../JSFunctions/pasajeros.js"></script>
   </body>
   <!--end::Body-->
 </html>
