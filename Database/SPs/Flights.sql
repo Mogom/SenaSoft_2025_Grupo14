@@ -1,8 +1,5 @@
 -- Active: 1761175326518@@127.0.0.1@3306@GESTION_VUELOS
-CREATE PROCEDURE GetAllChairs ()
-BEGIN 
-    SELECT * FROM vuelos JOIN asientos ON asientos.vuelos_id = vuelos.id ;
-END
+
 
 CREATE PROCEDURE GetAllFlights ()
 BEGIN
@@ -28,6 +25,15 @@ CREATE PROCEDURE GetFlightsNear2Months (
 )
 BEGIN
     SELECT * FROM vuelos WHERE fecha_salida BETWEEN p_date AND DATE_ADD(p_date, INTERVAL 2 MONTH);
+END
+
+
+CREATE PROCEDURE GetAllChairs (
+    IN p_fly_id INT
+)
+BEGIN
+    SELECT * FROM asientos 
+    WHERE asientos.vuelos_id = p_fly_id;
 END
 
 CREATE PROCEDURE GetFreeChairs (

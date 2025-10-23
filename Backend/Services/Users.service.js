@@ -39,23 +39,17 @@ class UsersService extends Base {
     }
 
     async registFly (data){
-        const newPassenger = [
-            data.f_backName,
-            data.l_backName,
-            data.names,
-            data.bornDate,
-            data.gender,
-            data.docType,
-            data.doc,
-            data.phone,
-            data.email,
-            data.rol,
-            data.childCondition,
+        const newFly = [
+            data.usuario_id,
+            data.total,
+            data.metodo_pago,
+            JSON.stringify(data.pasajeros),
+            JSON.stringify(data.asientos)
         ];
         const {db, query} = this.assistDB();
 
         try {
-            const result = await query("CALL RegisterPassenger(?,?,?,?,?,?,?,?,?,?,?)",newPassenger);
+            const result = await query("CALL RegistFly(?,?,?,?,?)",newFly);
             const data = this.validateResult(result);
             return {
                 message:"User created successfully",

@@ -76,6 +76,24 @@ class FlightService extends Base {
         }
     }
 
+    async getAllChairs(id) {
+        const by = id.replace(":","").replace(" ","")
+        const { db, query } = this.assistDB();
+        try {
+            // Uso de la funcion query de la clase Base
+            const result = await query("CALL GetAllChairs(?)",[by]);
+            const data = this.validateResult(result);
+            return {
+                message: 'Flights retrieved succesfully',
+                result: data
+            }
+        } catch (err) {
+            this.handleError(err);
+        } finally {
+            db.closeConnection();
+        }
+    }
+
     async getFlightByForm(data) {
         const by = [
             data.ciudad_origen,

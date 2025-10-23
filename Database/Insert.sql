@@ -95,7 +95,18 @@ INSERT INTO vuelos (id, numero_vuelo, fecha_salida, hora_salida, ciudad_origen, 
 (21, 1001, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '22:00:00', 'Lima', 'Madrid', 5, 3, '15:00:00', DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
 (22, 1002, DATE_ADD(CURDATE(), INTERVAL 7 DAY), '17:00:00', 'Madrid', 'Lima', 5, 1, '23:00:00', DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
 (23, 1101, DATE_ADD(CURDATE(), INTERVAL 8 DAY), '21:00:00', 'Lima', 'París', 4, 2, '14:00:00', DATE_ADD(CURDATE(), INTERVAL 9 DAY)),
-(24, 1102, DATE_ADD(CURDATE(), INTERVAL 9 DAY), '16:00:00', 'París', 'Lima', 4, 3, '22:00:00', DATE_ADD(CURDATE(), INTERVAL 9 DAY));
+(24, 1102, DATE_ADD(CURDATE(), INTERVAL 9 DAY), '16:00:00', 'París', 'Lima', 4, 3, '22:00:00', DATE_ADD(CURDATE(), INTERVAL 9 DAY)),
+(25, 1101, CURDATE(), '06:00:00', 'Lima', 'Bogotá', 1, 1, '09:00:00', CURDATE()),
+(26, 1102, CURDATE(), '09:30:00', 'Lima', 'Bogotá', 2, 2, '12:30:00', CURDATE()),
+(27, 1103, CURDATE(), '13:00:00', 'Lima', 'Bogotá', 3, 3, '16:00:00', CURDATE()),
+(28, 1104, CURDATE(), '16:30:00', 'Lima', 'Bogotá', 1, 1, '19:30:00', CURDATE()),
+(29, 1105, CURDATE(), '20:00:00', 'Lima', 'Bogotá', 2, 2, '23:00:00', CURDATE()),
+(30, 1106, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '07:00:00', 'Lima', 'Bogotá', 3, 3, '10:00:00', DATE_ADD(CURDATE(), INTERVAL 1 DAY)),
+(31, 1107, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '10:30:00', 'Lima', 'Bogotá', 1, 1, '13:30:00', DATE_ADD(CURDATE(), INTERVAL 1 DAY)),
+(32, 1108, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '14:00:00', 'Lima', 'Bogotá', 2, 2, '17:00:00', DATE_ADD(CURDATE(), INTERVAL 1 DAY)),
+(33, 1109, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '17:30:00', 'Lima', 'Bogotá', 3, 3, '20:30:00', DATE_ADD(CURDATE(), INTERVAL 1 DAY)),
+(34, 1110, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '21:00:00', 'Lima', 'Bogotá', 1, 1, '00:00:00', DATE_ADD(CURDATE(), INTERVAL 2 DAY));
+
 
 -- Insertar muchos más asientos (20 asientos por vuelo para simplificar)
 INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valor) VALUES
@@ -128,6 +139,36 @@ INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valo
 (136, 23, 'DISPONIBLE', '1A', 'ECONOMICA', 880),(137, 23, 'DISPONIBLE', '1B', 'ECONOMICA', 880),(138, 23, 'DISPONIBLE', '1C', 'ECONOMICA', 880),
 (139, 24, 'DISPONIBLE', '1A', 'ECONOMICA', 890),(140, 24, 'DISPONIBLE', '1B', 'ECONOMICA', 890),(141, 24, 'DISPONIBLE', '1C', 'ECONOMICA', 890);
 
+-- Insertar asientos para los nuevos vuelos Lima-Bogotá
+INSERT INTO asientos (id, vuelos_id, disponibilidad, codigo_asiento, clase, valor) VALUES
+-- Vuelo 25 (6 asientos de ejemplo)
+(150, 25, 'DISPONIBLE', '1A', 'ECONOMICA', 280),
+(151, 25, 'DISPONIBLE', '1B', 'ECONOMICA', 280),
+(152, 25, 'DISPONIBLE', '1C', 'ECONOMICA', 280),
+(153, 25, 'DISPONIBLE', '2A', 'EJECUTIVA', 480),
+(154, 25, 'DISPONIBLE', '2B', 'EJECUTIVA', 480),
+(155, 25, 'DISPONIBLE', '2C', 'EJECUTIVA', 480),
+(156, 26, 'DISPONIBLE', '1A', 'ECONOMICA', 290),
+(157, 26, 'DISPONIBLE', '1B', 'ECONOMICA', 290),
+(158, 26, 'DISPONIBLE', '1C', 'ECONOMICA', 290),
+(159, 26, 'DISPONIBLE', '2A', 'EJECUTIVA', 490),
+(160, 26, 'DISPONIBLE', '2B', 'EJECUTIVA', 490),
+(161, 27, 'DISPONIBLE', '1A', 'ECONOMICA', 300),
+(162, 27, 'DISPONIBLE', '1B', 'ECONOMICA', 300),
+(163, 28, 'DISPONIBLE', '1A', 'ECONOMICA', 310),
+(164, 28, 'DISPONIBLE', '1B', 'ECONOMICA', 310),
+(165, 29, 'DISPONIBLE', '1A', 'ECONOMICA', 320),
+(166, 29, 'DISPONIBLE', '1B', 'ECONOMICA', 320),
+(167, 30, 'DISPONIBLE', '1A', 'ECONOMICA', 330),
+(168, 30, 'DISPONIBLE', '1B', 'ECONOMICA', 330),
+(169, 31, 'DISPONIBLE', '1A', 'ECONOMICA', 340),
+(170, 31, 'DISPONIBLE', '1B', 'ECONOMICA', 340),
+(171, 32, 'DISPONIBLE', '1A', 'ECONOMICA', 350),
+(172, 32, 'DISPONIBLE', '1B', 'ECONOMICA', 350),
+(173, 33, 'DISPONIBLE', '1A', 'ECONOMICA', 360),
+(174, 33, 'DISPONIBLE', '1B', 'ECONOMICA', 360),
+(175, 34, 'DISPONIBLE', '1A', 'ECONOMICA', 370),
+(176, 34, 'DISPONIBLE', '1B', 'ECONOMICA', 370);
 -- Insertar muchas más reservas
 INSERT INTO reservas (id, codigo_reserva, estado, usuarios_id) VALUES
 (1, 'RES-001-2025', 'CONFIRMADA', 1),

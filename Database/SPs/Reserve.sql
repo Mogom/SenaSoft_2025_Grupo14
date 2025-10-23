@@ -2,47 +2,84 @@ CREATE PROCEDURE GetTicket (
     IN p_ticket_id INT
 )
 BEGIN
-    SELECT a.*,
-    per.*,
-    t.id
+    SELECT 
+        t.id as ticket_id,
+        a.codigo_asiento,
+        a.clase,
+        a.valor,
+        v.numero_vuelo,
+        v.ciudad_origen,
+        v.ciudad_destino,
+        v.fecha_salida,
+        v.hora_salida,
+        v.fecha_llegada,
+        v.hora_llegada,
+        CONCAT(per.nombres, ' ', per.primer_apellido) as nombre_pasajero,
+        per.numero_documento,
+        r.codigo_reserva,
+        p.total,
+        p.metodo_pago
+        
     FROM tickets t 
-    JOIN asientos a ON a.id = t.asientos_id
-    JOIN pagos p ON p.id = t.pagos_id
-    JOIN reservas r ON p.reservas_id = r.id
-    JOIN asignacion_asiento aa ON aa.reservas_id = r.id
-    JOIN pasajeros ps ON ps.id = aa.pasajeros_id
-    JOIN personas per ON ps.personas_id = per.id
+    INNER JOIN asientos a ON t.asientos_id = a.id
+    INNER JOIN vuelos v ON a.vuelos_id = v.id
+    INNER JOIN pagos p ON t.pagos_id = p.id
+    INNER JOIN reservas r ON p.reservas_id = r.id
+    INNER JOIN asignacion_asiento aa ON aa.asientos_id = a.id AND aa.reservas_id = r.id
+    INNER JOIN pasajeros ps ON aa.pasajeros_id = ps.id
+    INNER JOIN personas per ON ps.personas_id = per.id
     WHERE t.id = p_ticket_id;
 END
+
 
 
 CREATE PROCEDURE GetTicketByUser (
     IN p_user_id INT
 )
 BEGIN
-    SELECT a.*,
-    per.*,
-    v.ciudad_origen,
-    v.ciudad_destino,
-    v.fecha_salida,
-    v.hora_salida,
-    v.hora_llegada,
-    v.fecha_llegada,
-    v.numero_vuelo,
-    r.codigo_reserva,
-    t.id as ticket_id
+    SELECT DISTINCT
+        t.id as ticket_id,
+        a.id as asiento_id,
+        a.codigo_asiento,
+        a.clase,
+        a.valor,
+        per.primer_apellido,
+        per.segundo_apellido,
+        per.nombres,
+        per.fecha_nacimiento,
+        per.genero,
+        per.tipo_documento,
+        per.numero_documento,
+        per.telefono,
+        per.correo,
+        v.ciudad_origen,
+        v.ciudad_destino,
+        v.fecha_salida,
+        v.hora_salida,
+        v.hora_llegada,
+        v.fecha_llegada,
+        v.numero_vuelo,
+        r.codigo_reserva,
+        p.total,
+        p.metodo_pago,
+        p.fecha as fecha_pago,
+        p.hora as hora_pago
     FROM tickets t 
     JOIN asientos a ON a.id = t.asientos_id
     JOIN pagos p ON p.id = t.pagos_id
     JOIN reservas r ON p.reservas_id = r.id
-    JOIN asignacion_asiento aa ON aa.reservas_id = r.id
+    JOIN vuelos v ON a.vuelos_id = v.id
+    JOIN asignacion_asiento aa ON aa.asientos_id = a.id AND aa.reservas_id = r.id
     JOIN pasajeros ps ON ps.id = aa.pasajeros_id
     JOIN personas per ON ps.personas_id = per.id
-    JOIN vuelos v ON a.vuelos_id = v.id
-    WHERE r.usuarios_id = p_user_id;
+    WHERE r.usuarios_id = p_user_id
+    ORDER BY v.fecha_salida DESC, v.hora_salida DESC;
 END
 
-CREATE PROCEDURE RegistrarReservaConPasajeros(
+
+
+
+CREATE PROCEDURE RegistFly(
     -- Datos del usuario que realiza la reserva
     IN p_usuario_id INT,
     
