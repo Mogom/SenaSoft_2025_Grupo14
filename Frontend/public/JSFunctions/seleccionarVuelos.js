@@ -26,10 +26,23 @@ btnBuscar.addEventListener("click", (e) => {
     cantidad_sillas: numPersonas,
   };
 
+  if (origin.length === 0 && destino.length === 0 && fechaIda.length === 0) {
+     Swal.fire({
+       title: "ERROR",
+       text: "Faltan campos por rellenar",
+       icon: "error",
+     });
+     return;
+  }
+
   postData("/flights/search/form", busquedaVuelo).then((data) => {
     console.log(data);
     if (data.result === undefined) {
-      alert("faltan campos por rellnear")
+      Swal.fire({
+        title: "Aviso",
+        text: "No se encontraron vuelos disponibles",
+        icon: "warning"
+      })
       return;
     }
     data.result.forEach((element) => {
@@ -76,7 +89,7 @@ btnBuscar.addEventListener("click", (e) => {
         <p class="mb-0">Llegada: <strong>${fechaLlegada}</strong> 🕘 ${element.hora_llegada}</p>
       `;
 
-      // Columna 3: Detalles adicionales
+      // Columna 3: Detalles
       const colDetalles = document.createElement("div");
       colDetalles.classList.add("col-md-3", "text-center", "border-end");
       colDetalles.innerHTML = `
@@ -99,9 +112,14 @@ btnBuscar.addEventListener("click", (e) => {
       btnSeleccionar.textContent = "Seleccionar";
       btnSeleccionar.addEventListener("click", () => {
         alert(`Vuelo seleccionado con ID: ${element.id}`);
-        let IDvuelo = {
-          id: element.id
+        const datosVuelo = {
+          id: element.id,
+          numPersonas: numPersonas
         }
+        // window.location.href = `./frmPasajeros.html?id_vuelo=${element.id}&num=${numPersonas}`
+        localStorage.setItem('vueloData', JSON.stringify(datosVuelo))
+          window.location.href = `./frmPasajeros.html`;
+        
       });
 
       colBoton.appendChild(btnSeleccionar);
