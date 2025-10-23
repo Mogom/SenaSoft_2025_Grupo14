@@ -33,14 +33,3 @@ SET @pasajeros_json = '
 ]
 ';
 
--- IDs de los asientos para cada pasajero
-SET @asientos_json = '[15, 16]';
-
--- Ejecutar el procedimiento
-CALL RegistrarReservaConPasajeros(
-    @usuario_id,
-    @total,
-    @metodo_pago,
-    @pasajeros_json,
-    @asientos_json
-);

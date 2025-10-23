@@ -97,7 +97,5 @@ BEGIN
     WHERE u.id = p_user_id;
 END
 
-DROP PROCEDURE `GetReceipts`
 
-CALL `GetReceipts`(1)
 
