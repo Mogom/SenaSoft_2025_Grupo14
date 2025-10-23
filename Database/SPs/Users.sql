@@ -83,3 +83,21 @@ BEGIN
     WHERE u.id = p_user_id
     ORDER BY v.fecha_salida DESC, v.hora_salida DESC;
 END
+
+
+CREATE PROCEDURE GetReceipts(
+    IN p_user_id INT
+)
+BEGIN
+    SELECT p.*,
+    (SELECT COUNT(*) FROM asignacion_asiento WHERE reservas_id = r.id) as numero_asientos
+    FROM pagos p 
+    JOIN reservas r ON p.reservas_id = r.id
+    JOIN usuarios u ON r.usuarios_id = u.id
+    WHERE u.id = p_user_id;
+END
+
+DROP PROCEDURE `GetReceipts`
+
+CALL `GetReceipts`(1)
+

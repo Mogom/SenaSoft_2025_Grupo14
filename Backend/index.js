@@ -14,6 +14,7 @@ const {validatorApiKey} = require('./Middlewares/validatorHandler')
 
 const users = require('./Routes/users.route')
 const flights = require('./Routes/flight.route')
+const tickets = require('./Routes/ticket.route')
 
 app.use(cors(corsOption))
 app.use(express.json())
@@ -23,6 +24,7 @@ app.use(validatorApiKey)
 
 app.use('/users', users)
 app.use('/flights', flights)
+app.use('/tickets', tickets)
 
 // Ruta de prueba
 

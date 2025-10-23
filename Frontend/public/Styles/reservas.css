@@ -13,7 +13,7 @@
 .flight-time {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #007bff;
+  color: #1c5729;
   margin: 5px 0;
 }
 
@@ -27,7 +27,7 @@
   background: white;
   padding: 8px;
   border-radius: 50%;
-  border: 2px solid #007bff;
+  border: 2px solid #36611e;
 }
 
 .flight-duration {
