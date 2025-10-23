@@ -26,10 +26,10 @@ btnBuscar.addEventListener("click", (e) => {
     cantidad_sillas: numPersonas,
   };
 
-  if (origin.length === 0 && destino.length === 0 && fechaIda.length === 0) {
+  if (origin.length === 0 || destino.length === 0 || fechaIda.length === 0) {
      Swal.fire({
        title: "ERROR",
-       text: "Faltan campos por rellenar",
+       text: "Todos los campos son obligatorios",
        icon: "error",
      });
      return;
@@ -111,7 +111,6 @@ btnBuscar.addEventListener("click", (e) => {
       );
       btnSeleccionar.textContent = "Seleccionar";
       btnSeleccionar.addEventListener("click", () => {
-        alert(`Vuelo seleccionado con ID: ${element.id}`);
         const datosVuelo = {
           id: element.id,
           numPersonas: numPersonas

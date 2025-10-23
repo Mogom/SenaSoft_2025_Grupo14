@@ -91,7 +91,9 @@ if (userdataJson) {
   form.appendChild(col);
 
   // Evento del boton
-  btnEnviar.addEventListener("click", (e) => {
+  
+    btnEnviar.addEventListener("click", (e) => {
+      let datosPasajero = [];
     e.preventDefault();
     for (let i = 0; i < datos.numPersonas; i++) {
       let primer_apellido = document.querySelector(
@@ -109,9 +111,39 @@ if (userdataJson) {
         "#tipo_documento" + (i + 1)
       ).value;
       let telefono = document.querySelector("#telefono" + (i + 1)).value;
-        let correo = document.querySelector("#correo" + (i + 1)).value;
-        let condicion_infante = document.querySelector("#condicion_infante" + (i + 1)).value;
-    }
+      let correo = document.querySelector("#correo" + (i + 1)).value;
+      let condicion_infante = document.querySelector(
+        "#condicion_infante" + (i + 1)
+        ).value;
+        if (primer_apellido.length === 0 || segundo_apellido.length == 0 || nombres.length === 0 || fecha_nacimiento.length === 0 || telefono.length === 0 || correo.length === 0) {
+            Swal.fire({
+                "title": "Error",
+                "text": "Todos los campos son obligatorios",
+                "icon": "error"
+            })
+            return
+        }
+
+      let pasajeros = {
+          id_usuario: 1,
+        id_vuelo: datos.id,
+          numPersonas: datos.numPersonas,
+          primer_apellido: primer_apellido,
+          segundo_apellido: segundo_apellido,
+          nombres: nombres,
+          fecha_nacimiento: fecha_nacimiento,
+          genero: genero,
+          tipo_documento: tipo_documento,
+          telefono: telefono,
+          correo: correo,
+          condicion_infante: condicion_infante
+        };
+        
+        datosPasajero.push(pasajeros);
+      }
+      console.log(datosPasajero)
+      localStorage.setItem("pasajerosData", JSON.stringify(datosPasajero));
+      window.location.href = `./asientos.html`;
   });
 }
 
@@ -122,7 +154,8 @@ function crearCampos(contLabel, claseInput, tipoInput, capa, idInput) {
   let input = document.createElement("input");
   input.classList.add(claseInput);
   input.setAttribute("type", tipoInput);
-  input.setAttribute("id", idInput);
+    input.setAttribute("id", idInput);
+    input.setAttribute("required", "required");
   capa.appendChild(label);
   capa.appendChild(input);
 }
