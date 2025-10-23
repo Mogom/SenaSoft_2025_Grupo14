@@ -1,26 +1,25 @@
 import { postData } from "./requests.js";
 
 function crearParrafo(titulo, contenido) {
-  let parrafo = document.createElement("p");
-  parrafo.classList.add("card-text", "mx-2");
-  parrafo.textContent = titulo + " " + contenido
-  return parrafo;
+  const p = document.createElement("p");
+  p.classList.add("mb-1");
+  p.innerHTML = `<strong>${titulo}</strong> ${contenido}`;
+  return p;
 }
 
-let btnBuscar = document.querySelector("#btnBuscar");
+const btnBuscar = document.querySelector("#btnBuscar");
+
 btnBuscar.addEventListener("click", (e) => {
   e.preventDefault();
-  let contenedorVuelos = document.querySelector("#vuelos");
-  let origen = document.querySelector("#origen").value;
-  let destino = document.querySelector("#destino").value;
-  let fechaIda = document.querySelector("#fechaIda").value;
-  let numPersonas = document.querySelector("#personas").value;
-  console.log(origen);
-  console.log(destino);
-  console.log(fechaIda);
-  console.log(numPersonas);
 
-  let busquedaVuelo = {
+  const contenedorVuelos = document.querySelector("#vuelos");
+  contenedorVuelos.innerHTML = ""; // Limpiar resultados previos
+
+  const origen = document.querySelector("#origen").value.trim();
+  const destino = document.querySelector("#destino").value.trim();
+  const fechaIda = document.querySelector("#fechaIda").value;
+  const numPersonas = document.querySelector("#personas").value;
+  const busquedaVuelo = {
     ciudad_origen: origen,
     ciudad_destino: destino,
     fecha_salida: fechaIda,
@@ -28,34 +27,90 @@ btnBuscar.addEventListener("click", (e) => {
   };
 
   postData("/flights/search/form", busquedaVuelo).then((data) => {
-    console.log(data); // JSON data parsed by `data.json()` call
+    console.log(data);
+    if (data.result === undefined) {
+      alert("faltan campos por rellnear")
+      return;
+    }
     data.result.forEach((element) => {
-      let row = document.createElement("div");
-      row.classList.add("row", "mt-3");
-      let card = document.createElement("div");
-      card.classList.add("card");
-      row.appendChild(card);
+      const row = document.createElement("div");
+      row.classList.add(
+        "row",
+        "align-items-center",
+        "bg-light",
+        "rounded-4",
+        "shadow-sm",
+        "my-3",
+        "p-3"
+      );
+      row.style.transition = "transform 0.2s ease-in-out";
+      row.setAttribute("id", element.id);
 
-      let cardBody = document.createElement("div");
-      cardBody.classList.add("card-body", "d-flex");
-      card.appendChild(cardBody)
+      // Efecto hover
+      row.addEventListener(
+        "mouseenter",
+        () => (row.style.transform = "scale(1.01)")
+      );
+      row.addEventListener(
+        "mouseleave",
+        () => (row.style.transform = "scale(1)")
+      );
 
-      let ciudad_origen = crearParrafo("Ciudad origen: ", element.ciudad_origen)
-      let ciudad_destino = crearParrafo("Ciudad de destino: ", element.ciudad_destino)
-      let fecha_llegada_format = new Date(element.fecha_llegada)
-       let fecha_salida_format = new Date(element.fecha_salida);
-      let fecha_llegada = crearParrafo("Fecha de llegada: ", fecha_llegada_format.toLocaleDateString())
-      let hora_llegada = crearParrafo("Hora de llegada: ", element.hora_llegada)
-      let fecha_salida = crearParrafo("Fecha de salida: ", fecha_salida_format.toLocaleDateString())
-      let hora_salida = crearParrafo("Hora de salida: ", element.hora_salida)
-      cardBody.appendChild(ciudad_origen);
-      cardBody.appendChild(ciudad_destino)
-      cardBody.appendChild(fecha_llegada);
-      cardBody.appendChild(hora_llegada);
-      cardBody.appendChild(fecha_salida)
-       cardBody.appendChild(hora_salida);
-      contenedorVuelos.appendChild(row)
-      
+      // Columna 1: Origen y destino
+      const colOrigenDestino = document.createElement("div");
+      colOrigenDestino.classList.add("col-md-3", "text-center", "border-end");
+      colOrigenDestino.innerHTML = `
+        <h6 class="fw-bold text-primary mb-2">Trayecto</h6>
+        <p class="mb-0">Ciudad de origen: <strong>${element.ciudad_origen}</strong></p>
+        <p class="mb-0">Ciudad de destino: <strong>${element.ciudad_destino}</strong></p>
+      `;
+
+      // Columna 2: Fechas
+      const colFechas = document.createElement("div");
+      colFechas.classList.add("col-md-4", "text-center", "border-end");
+      const fechaSalida = new Date(element.fecha_salida).toLocaleDateString();
+      const fechaLlegada = new Date(element.fecha_llegada).toLocaleDateString();
+      colFechas.innerHTML = `
+        <h6 class="fw-bold text-success mb-2">Fechas</h6>
+        <p class="mb-0">Salida: <strong>${fechaSalida}</strong> 🕓 ${element.hora_salida}</p>
+        <p class="mb-0">Llegada: <strong>${fechaLlegada}</strong> 🕘 ${element.hora_llegada}</p>
+      `;
+
+      // Columna 3: Detalles adicionales
+      const colDetalles = document.createElement("div");
+      colDetalles.classList.add("col-md-3", "text-center", "border-end");
+      colDetalles.innerHTML = `
+        <h6 class="fw-bold text-secondary mb-2">Detalles</h6>
+        <p class="mb-0">🧍‍♂️ Personas: <strong>${busquedaVuelo.cantidad_sillas}</strong></p>
+        <p class="mb-0">ID vuelo: <strong>${element.id}</strong></p>
+      `;
+
+      // Columna 4: Botón
+      const colBoton = document.createElement("div");
+      colBoton.classList.add("col-md-2", "text-center");
+      const btnSeleccionar = document.createElement("button");
+      btnSeleccionar.classList.add(
+        "btn",
+        "btn-primary",
+        "fw-semibold",
+        "px-4",
+        "py-2"
+      );
+      btnSeleccionar.textContent = "Seleccionar";
+      btnSeleccionar.addEventListener("click", () => {
+        alert(`Vuelo seleccionado con ID: ${element.id}`);
+        let IDvuelo = {
+          id: element.id
+        }
+      });
+
+      colBoton.appendChild(btnSeleccionar);
+
+      // Agregar columnas a la fila
+      row.append(colOrigenDestino, colFechas, colDetalles, colBoton);
+
+      // Agregar fila al contenedor
+      contenedorVuelos.appendChild(row);
     });
   });
 });
