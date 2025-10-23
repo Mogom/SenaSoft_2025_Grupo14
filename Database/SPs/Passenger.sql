@@ -36,3 +36,34 @@ BEGIN
    VALUES (p_codigo_reserva, p_estado, p_user_id);
 END
 
+CREATE PROCEDURE AsignarPasajeroYAsiento(
+    IN p_pasajero_id INT,
+    IN p_asiento_id INT,
+    IN p_reserva_id INT,
+    IN p_pago_id INT
+)
+BEGIN
+    DECLARE v_asiento_disponible VARCHAR(100);
+
+    -- Verificar disponibilidad del asiento
+    SELECT disponibilidad INTO v_asiento_disponible 
+    FROM asientos 
+    WHERE id = p_asiento_id;
+    
+    IF v_asiento_disponible != 'disponible' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El asiento no está disponible';
+    END IF;
+
+    -- 1. Asignar asiento al pasajero en la reserva
+    INSERT INTO asignacion_asiento (pasajeros_id, asientos_id, reservas_id)
+    VALUES (p_pasajero_id, p_asiento_id, p_reserva_id);
+
+    -- 2. Actualizar disponibilidad del asiento
+    UPDATE asientos SET disponibilidad = 'ocupado' WHERE id = p_asiento_id;
+
+    -- 3. Crear ticket para el pasajero
+    INSERT INTO tickets (asientos_id, pagos_id)
+    VALUES (p_asiento_id, p_pago_id);
+END 
+
+

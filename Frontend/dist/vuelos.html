@@ -88,8 +88,8 @@
             <li class="nav-item d-none d-md-block">
               <a href="./index.html" class="nav-link">Home</a>
             </li>
-            <li id="auth" class="nav-item d-none d-md-block">
-              <a href="./login.html" class="nav-link">Login</a>
+            <li class="nav-item d-none d-md-block">
+              <a href="">a</a>
             </li>
           </ul>
           <!--end::Start Navbar Links-->
@@ -102,59 +102,78 @@
       </nav>
       <!--end::Header-->
       <!--begin::Sidebar-->
-    <aside class="app-sidebar sidebar-body shadow-lg" data-bs-theme="dark">
-  <!-- Sidebar Header -->
-  <div class="sidebar-header text-center py-4 bg-side-bar border-bottom border-secondary">
-    <img
-      src="./assets/img/icono-avion-removebg-preview.png"
-      alt="Logo Aerolínea"
-      class="img-fluid w-50 rounded-circle shadow-sm mb-2"
-    />
-    <h5 class="text-white fw-semibold mb-0">SenaSoft Airlines</h5>
-    <small class="text-light opacity-75">Tu vuelo comienza aquí ✈️</small>
-  </div>
-
-  <!-- Sidebar Navigation -->
-  <div class="sidebar-wrapper py-3">
-    <nav>
-      <ul
-        class="nav flex-column px-3"
-        role="navigation"
-        aria-label="Main navigation"
-        id="navigation"
-      >
-        <li class="nav-item mb-1">
-          <a href="./index.html" class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
-            <i class="fa-solid fa-house fs-5"></i>
-            <span>Inicio</span>
+      <aside class="app-sidebar sidebar-body shadow" data-bs-theme="dark">
+        <!--begin::Sidebar Brand-->
+         <div class="sidebar-brand sidebar-header">
+        
+            <div class="text-center">
+              <img
+                src="./assets/img/icono-avion-removebg-preview.png"
+                alt="icono-avion"
+                class="img-fluid w-75 rounded-5 shadow"
+              />
+            </div>
+               <div class="text-center">
+             <span class="brand-text fw-light">SenaSoft-Airlines</span>
+            </div>
+        
+        
+          <!--begin::Brand Link-->
+          <a href="./index.html" class="brand-link">
+            <!--begin::Brand Image-->
+            <!--end::Brand Image-->
+            <!--begin::Brand Text-->
+           
+            <!--end::Brand Text-->
           </a>
-        </li>
+          <!--end::Brand Link-->
+        </div>
+        <!--end::Sidebar Brand-->
+        <!--begin::Sidebar Wrapper-->
+        <div class="sidebar-wrapper">
+          <nav class="mt-2">
+            <!--begin::Sidebar Menu-->
+            <ul
+              class="nav sidebar-menu flex-column"
+              data-lte-toggle="treeview"
+              role="navigation"
+              aria-label="Main navigation"
+              data-accordion="false"
+              id="navigation"
+            >
+              <li class="nav-item">
+                <a href="./index.html" class="nav-link">
+                  <i class="fa-solid fa-house"></i>
+                  <p>Home</p>
+                </a>
+              </li>
 
-        <li class="nav-item mb-1">
-          <a href="./vuelos.html" class="nav-link active d-flex align-items-center gap-2 rounded px-3 py-2">
-            <i class="fa-solid fa-plane fs-5"></i>
-            <span>Buscar vuelos</span>
-          </a>
-        </li>
+              <li class="nav-item">
+                <a href="./vuelos.html" class="nav-link active">
+                  <i class="fa-solid fa-plane"></i>
+                  <p>Buscar vuelos</p>
+                </a>
+              </li>
 
-        <li class="nav-item mb-1">
-          <a href="./reservas.html" class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
-            <i class="fa-solid fa-calendar-days fs-5"></i>
-            <span>Reservas</span>
-          </a>
-        </li>
+              <li class="nav-item">
+                <a href="./reservas.html" class="nav-link">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <p>Reservas</p>
+                </a>
+              </li>
 
-        <li class="nav-item mb-1">
-          <a href="./recibos.html" class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2">
-            <i class="fa-solid fa-list-check fs-5"></i>
-            <span>Recibos</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</aside>
-
+              <li class="nav-item">
+                <a href="./reservas.html" class="nav-link">
+                  <i class="fa-solid fa-list-check"></i>
+                  <p>Recibos</p>
+                </a>
+              </li>
+            </ul>
+            <!--end::Sidebar Menu-->
+          </nav>
+        </div>
+        <!--end::Sidebar Wrapper-->
+      </aside>
       <!--end::Sidebar-->
       <!--begin::App Main-->
       <main class="app-main">
@@ -169,7 +188,7 @@
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
-            <div id="buscarVuelo" class="card">
+            <div class="card">
               <div class="card-body">
                 <form action="" id="frmVuelo">
                   <div class="">
@@ -271,7 +290,6 @@
                 </form>
               </div>
             </div>
-            <div id="vuelos"></div>
           </div>
           <!--end::Container-->
         </div>
@@ -325,8 +343,6 @@
     <!-- JS personal -->
      <script src="../JSFunctions/validacionFecha.js"></script>
     <script type="module" src="../JSFunctions/seleccionarVuelos.js"></script>
-    <!-- Sweet alert -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
   <!--end::Body-->
 </html>

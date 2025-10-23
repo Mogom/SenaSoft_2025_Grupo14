@@ -1,0 +1,60 @@
+.flight-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+}
+
+
+.flight-city {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.flight-time {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1c5729;
+  margin: 5px 0;
+}
+
+.flight-route {
+  position: relative;
+  padding: 10px 0;
+}
+
+.flight-route .fa-plane {
+  font-size: 1.5rem;
+  background: white;
+  padding: 8px;
+  border-radius: 50%;
+  border: 2px solid #36611e;
+}
+
+.flight-duration {
+  font-size: 0.85rem;
+}
+
+.card-header {
+  border-radius: 10px 10px 0 0 !important;
+}
+
+@media (max-width: 768px) {
+  .flight-city {
+    font-size: 1rem;
+  }
+  
+  .flight-time {
+    font-size: 1.1rem;
+  }
+  
+  .flight-route .fa-plane {
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+}
+
+/* Estilos para diferentes estados de reserva */
+.badge.bg-light.text-dark {
+  font-size: 0.75rem;
+  padding: 0.35em 0.65em;
+}

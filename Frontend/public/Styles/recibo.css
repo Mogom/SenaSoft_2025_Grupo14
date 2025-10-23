@@ -1,0 +1,202 @@
+.receipt,
+.receipt * {
+  box-sizing: border-box;
+}
+.receipt {
+  background: #ffffff;
+  height: 1107px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-16 {
+  background: #025959;
+  width: 886px;
+  height: 17px;
+  position: absolute;
+  left: 53px;
+  top: 147px;
+}
+.rectangle-17 {
+  background: #025959;
+  width: 886px;
+  height: 17px;
+  position: absolute;
+  left: 65px;
+  top: 642px;
+}
+.pase-de-abordaje-boarding-pass {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 53px;
+  top: 86px;
+  -webkit-text-stroke: 1px #000000;
+}
+.codigo {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 65px;
+  top: 216px;
+  -webkit-text-stroke: 1px #000000;
+}
+.fecha-date {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 868px;
+  top: 204px;
+  -webkit-text-stroke: 1px #000000;
+}
+.hora-time {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 898px;
+  top: 384px;
+  -webkit-text-stroke: 1px #000000;
+}
+.example-213123 {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 65px;
+  top: 274px;
+  -webkit-text-stroke: 1px #000000;
+}
+._2025-21-10 {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 902px;
+  top: 274px;
+  -webkit-text-stroke: 1px #000000;
+}
+._10-15 {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 1048px;
+  top: 454px;
+  -webkit-text-stroke: 1px #000000;
+}
+.silla-seat {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 65px;
+  top: 384px;
+  -webkit-text-stroke: 1px #000000;
+}
+.nombre-del-pasajero {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 65px;
+  top: 584px;
+  -webkit-text-stroke: 1px #000000;
+}
+.origen-origin {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 65px;
+  top: 711px;
+  -webkit-text-stroke: 1px #000000;
+}
+.bogota-d-c {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 61px;
+  top: 769px;
+  -webkit-text-stroke: 1px #000000;
+}
+.destino-destiny {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 721px;
+  top: 699px;
+  -webkit-text-stroke: 1px #000000;
+}
+.pereira {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 972px;
+  top: 769px;
+  -webkit-text-stroke: 1px #000000;
+}
+._24-a {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 69px;
+  top: 454px;
+  -webkit-text-stroke: 1px #000000;
+}
+.sena-soft {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 65px;
+  top: 957px;
+  -webkit-text-stroke: 1px #000000;
+}
+.air-lines {
+  color: #000000;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: absolute;
+  left: 79px;
+  top: 1015px;
+  -webkit-text-stroke: 1px #000000;
+}
