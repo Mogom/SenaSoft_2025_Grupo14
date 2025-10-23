@@ -86,14 +86,20 @@ getData(`/tickets/user/get:1`)
             additionalInfo.appendChild(infoCol1);
             additionalInfo.appendChild(infoCol2);
 
-            // BOTÓN VER TICKET
+            // BOTÓN VER TICKET - AHORA CON ENLACE DIRECTO
             let buttonContainer = document.createElement("div");
             buttonContainer.classList.add("row", "mt-3", "pt-3", "border-top");
+            
+            // Formatear fecha para el ticket
+            const fechaFormateada = new Date(element.fecha_salida).toLocaleDateString('es-ES');
+            
             buttonContainer.innerHTML = `
                 <div class="col-12 text-center">
-                    <button class="btn btn-success btn-ver-ticket" data-ticket-id="${element.ticket_id}">
+                    <a href="ticket-template.html?codigo=${element.codigo_reserva}&fecha=${fechaFormateada}&asiento=${element.codigo_asiento}&hora=${element.hora_salida.substring(0,5)}&pasajero=${encodeURIComponent(element.nombre_pasajero)}&origen=${element.ciudad_origen}&destino=${element.ciudad_destino}" 
+                       class="btn btn-success" 
+                       target="_blank">
                         <i class="fas fa-ticket-alt me-2"></i>Ver Ticket
-                    </button>
+                    </a>
                 </div>
             `;
 
@@ -104,14 +110,6 @@ getData(`/tickets/user/get:1`)
             card.appendChild(cardHeader);
             card.appendChild(cardBody);
             contenedorVuelos.appendChild(card);
-        });
-
-        // Agregar event listeners a los botones
-        document.querySelectorAll('.btn-ver-ticket').forEach(button => {
-            button.addEventListener('click', function() {
-                const ticketId = this.getAttribute('data-ticket-id');
-                generarPDF(ticketId);
-            });
         });
 
         if (data.result.length === 0) {
@@ -135,222 +133,3 @@ getData(`/tickets/user/get:1`)
             </div>
         `;
     });
-
-// Función para generar PDF usando getData
-async function generarPDF(ticketId) {
-    try {
-        // Mostrar loading
-        mostrarLoading();
-        
-        // Usar getData para obtener el ticket específico
-        const data = await getData(`/tickets/get:${ticketId}`);
-        
-        if (data.result && data.result.length > 0) {
-            const ticket = data.result[0];
-            crearPDF(ticket);
-        } else {
-            alert('No se encontró el ticket');
-        }
-    } catch (error) {
-        console.error('Error al obtener el ticket:', error);
-        alert('Error al generar el PDF');
-    } finally {
-        // Ocultar loading
-        ocultarLoading();
-    }
-}
-
-// Función para crear el PDF
-function crearPDF(ticket) {
-    if (typeof html2pdf === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
-        script.onload = () => generarPDFConHtml2pdf(ticket);
-        document.head.appendChild(script);
-    } else {
-        generarPDFConHtml2pdf(ticket);
-    }
-}
-
-function generarPDFConHtml2pdf(ticket) {
-    // Formatear fechas
-    const fechaSalida = new Date(ticket.fecha_salida).toLocaleDateString('es-ES');
-    
-    // Crear el HTML del ticket con un diseño más compatible
-    const ticketHTML = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <style>
-                body {
-                    margin: 0;
-                    padding: 0;
-                    font-family: Arial, sans-serif;
-                    background: white;
-                }
-                .ticket {
-                    width: 300px; /* Ajustado para un tamaño de ticket más realista */
-                    border: 1px solid #000;
-                    padding: 10px;
-                    background: white;
-                    margin: auto; /* Centrar el ticket */
-                }
-                .header {
-                    text-align: center;
-                    border-bottom: 2px solid #000;
-                    padding-bottom: 5px;
-                    margin-bottom: 10px;
-                }
-                .header h1 {
-                    margin: 0;
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                .divider {
-                    height: 2px;
-                    background-color: #000;
-                    margin: 5px 0;
-                }
-                .row {
-                    overflow: hidden; /* Para que los elementos flotantes se comporten bien */
-                    margin-bottom: 5px;
-                }
-                .column {
-                    float: left;
-                    width: 50%; /* Dos columnas */
-                }
-                .label {
-                    font-weight: bold;
-                    font-size: 10px;
-                }
-                .value {
-                    font-size: 10px;
-                }
-                .airline {
-                    text-align: center;
-                    font-weight: bold;
-                    font-size: 10px;
-                    margin-top: 10px;
-                }
-                .name-section .label {
-                    margin-bottom: 5px;
-                }
-                .name-section .value {
-                    border-bottom: 1px solid #000;
-                    padding-bottom: 5px;
-                }
-                .origin-dest {
-                    overflow: hidden;
-                    margin-top: 10px;
-                    border-bottom: 2px solid #000;
-                    padding-bottom: 10px;
-                }
-                .origin-dest .column {
-                    text-align: center;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="ticket">
-                <div class="header">
-                    <div class="label">PASE DE ABORDAJE / BOARDING PASS</div>
-                    <div class="divider"></div>
-                </div>
-
-                <div class="row">
-                    <div class="column">
-                        <div class="label">CÓDIGO</div>
-                        <div class="value">${ticket.codigo_reserva}</div>
-                    </div>
-                    <div class="column">
-                        <div class="label">FECHA / DATE</div>
-                        <div class="value">${fechaSalida}</div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="column">
-                        <div class="label">SILLA / SEAT</div>
-                        <div class="value">${ticket.codigo_asiento}</div>
-                    </div>
-                    <div class="column">
-                        <div class="label">HORA / TIME</div>
-                        <div class="value">${ticket.hora_salida.substring(0, 5)}</div>
-                    </div>
-                </div>
-
-                <div class="name-section">
-                    <div class="label">NOMBRE DEL PASAJERO</div>
-                    <div class="divider"></div>
-                    <div class="value">${ticket.nombre_pasajero}</div>
-                </div>
-
-                <div class="origin-dest">
-                    <div class="column">
-                        <div class="label">ORIGEN / ORIGIN</div>
-                        <div class="value">${ticket.ciudad_origen}</div>
-                    </div>
-                    <div class="column">
-                        <div class="label">DESTINO / DESTINY</div>
-                        <div class="value">${ticket.ciudad_destino}</div>
-                    </div>
-                </div>
-                
-                <div class="airline">
-                    &lt;SENA/Soft&gt;<br>
-                    AirLines
-                </div>
-            </div>
-        </body>
-        </html>
-    `;
-
-    // Configuración para html2pdf
-    const options = {
-        margin: [10, 10, 10, 10], // Margen en el PDF final
-        filename: `ticket-${ticket.codigo_reserva}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2, // Ajusta la escala para mejor calidad sin ser excesiva
-            useCORS: true,
-            logging: false
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a6', 
-            orientation: 'portrait'
-        }
-    };
-
-    // Generar PDF
-    html2pdf().from(ticketHTML).set(options).save();
-}
-
-
-// Funciones para mostrar/ocultar loading
-function mostrarLoading() {
-    let loadingDiv = document.getElementById('pdf-loading');
-    if (!loadingDiv) {
-        loadingDiv = document.createElement('div');
-        loadingDiv.id = 'pdf-loading';
-        loadingDiv.className = 'pdf-loading';
-        loadingDiv.innerHTML = `
-            <div class="pdf-loading-content">
-                <div class="spinner-border text-success" role="status">
-                    <span class="visually-hidden">Generando PDF...</span>
-                </div>
-                <p class="mt-2">Generando PDF...</p>
-            </div>
-        `;
-        document.body.appendChild(loadingDiv);
-    }
-    loadingDiv.style.display = 'flex';
-}
-
-function ocultarLoading() {
-    const loadingDiv = document.getElementById('pdf-loading');
-    if (loadingDiv) {
-        loadingDiv.style.display = 'none';
-    }
-}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de Vuelo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .ticket {
+            width: 300px;
+            border: 2px solid #000;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #000;
+            margin: 8px 0;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .label {
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .value {
+            font-size: 11px;
+        }
+
+        .airline {
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #000;
+        }
+
+        .name-section {
+            margin: 10px 0;
+        }
+
+        .name-section .value {
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        .route-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px 0;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+
+        .route-section .column {
+            text-align: center;
+        }
+
+        .barcode {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin: 10px 0;
+            padding: 5px;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ticket">
+        <div class="header">
+            <h1>PASE DE ABORDAJE / BOARDING PASS</h1>
+        </div>
+
+        <div class="row">
+            <div>
+                <div class="label">CÓDIGO</div>
+                <div class="value" id="codigo-reserva">-</div>
+            </div>
+            <div>
+                <div class="label">FECHA / DATE</div>
+                <div class="value" id="fecha-vuelo">-</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <div class="label">SILLA / SEAT</div>
+                <div class="value" id="asiento">-</div>
+            </div>
+            <div>
+                <div class="label">HORA / TIME</div>
+                <div class="value" id="hora-vuelo">-</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="name-section">
+            <div class="label">NOMBRE DEL PASAJERO</div>
+            <div class="value" id="nombre-pasajero">-</div>
+        </div>
+
+        <div class="route-section">
+            <div class="column">
+                <div class="label">ORIGEN / ORIGIN</div>
+                <div class="value" id="origen">-</div>
+            </div>
+            <div class="column">
+                <div class="label">DESTINO / DESTINY</div>
+                <div class="value" id="destino">-</div>
+            </div>
+        </div>
+
+        <div class="barcode" id="barcode">
+            -
+        </div>
+
+        <div class="airline">
+            &lt;SENA/Soft&gt;<br>
+            AirLines
+        </div>
+    </div>
+
+    <script>
+        // Obtener parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Llenar los datos del ticket
+        document.getElementById('codigo-reserva').textContent = urlParams.get('codigo') || '-';
+        document.getElementById('fecha-vuelo').textContent = urlParams.get('fecha') || '-';
+        document.getElementById('asiento').textContent = urlParams.get('asiento') || '-';
+        document.getElementById('hora-vuelo').textContent = urlParams.get('hora') || '-';
+        document.getElementById('nombre-pasajero').textContent = urlParams.get('pasajero') || '-';
+        document.getElementById('origen').textContent = urlParams.get('origen') || '-';
+        document.getElementById('destino').textContent = urlParams.get('destino') || '-';
+        document.getElementById('barcode').textContent = urlParams.get('codigo') || '-';
+    </script>
+</body>
+
+</html>

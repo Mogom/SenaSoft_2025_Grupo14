@@ -8,7 +8,7 @@ getData(`/tickets/receipt/get:1`)
         data.result.forEach((element) => {
             // Crear tarjeta simple
             let card = document.createElement("div");
-            card.classList.add("card", "mb-3", "border-0", "shadow");
+            card.classList.add("card", "mb-3");
             
             // Header con verde oscuro
             let cardHeader = document.createElement("div");
