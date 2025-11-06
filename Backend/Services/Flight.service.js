@@ -58,6 +58,24 @@ class FlightService extends Base {
         }
     }
 
+    async getFlightNear2Months(date) {
+        const by = date.replace(":","").replace(" ","")
+        const { db, query } = this.assistDB();
+        try {
+            // Uso de la funcion query de la clase Base
+            const result = await query("CALL GetFlightsNear2Months(?)",[by]);
+            const data = this.validateResult(result);
+            return {
+                message: 'Flights retrieved succesfully',
+                result: data
+            }
+        } catch (err) {
+            this.handleError(err);
+        } finally {
+            db.closeConnection();
+        }
+    }
+
     async getFreeChairs(id) {
         const by = id.replace(":","").replace(" ","")
         const { db, query } = this.assistDB();

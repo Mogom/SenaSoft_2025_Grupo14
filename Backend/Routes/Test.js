@@ -32,11 +32,3 @@ const reservaData = {
     asientos: [15, 16]
 };
 
-// Enviar al backend
-fetch('/api/reservas', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(reservaData)
-})

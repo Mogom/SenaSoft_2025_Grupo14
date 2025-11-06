@@ -32,7 +32,6 @@ BEGIN
 END
 
 
-
 CREATE PROCEDURE GetTicketByUser (
     IN p_user_id INT
 )
@@ -43,9 +42,7 @@ BEGIN
         a.codigo_asiento,
         a.clase,
         a.valor,
-        per.primer_apellido,
-        per.segundo_apellido,
-        per.nombres,
+        CONCAT(per.nombres, ' ', per.primer_apellido) as nombre_pasajero,
         per.fecha_nacimiento,
         per.genero,
         per.tipo_documento,
@@ -80,17 +77,10 @@ END
 
 
 CREATE PROCEDURE RegistFly(
-    -- Datos del usuario que realiza la reserva
     IN p_usuario_id INT,
-    
-    -- Datos del pago
     IN p_total DECIMAL(10,0),
     IN p_metodo_pago VARCHAR(100),
-    
-    -- Datos de los pasajeros (hasta 5) como JSON
-    IN p_pasajeros_json JSON,
-    
-    -- IDs de los asientos para cada pasajero
+    IN p_pasajeros_json JSON,  
     IN p_asientos_json JSON
 )
 BEGIN
@@ -109,37 +99,31 @@ BEGIN
         RESIGNAL;
     END;
 
-    -- Validar que hay al menos 1 pasajero
     SET v_num_pasajeros = JSON_LENGTH(p_pasajeros_json);
     IF v_num_pasajeros < 1 OR v_num_pasajeros > 5 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Debe haber entre 1 y 5 pasajeros';
     END IF;
 
-    -- Validar que el número de asientos coincide con el número de pasajeros
     IF v_num_pasajeros != JSON_LENGTH(p_asientos_json) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El número de asientos no coincide con el número de pasajeros';
     END IF;
 
     START TRANSACTION;
 
-    -- Generar código de reserva único
     SET v_codigo_reserva = CONCAT('RES', DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(FLOOR(RAND() * 10000), 4, '0'));
 
-    -- 1. Crear la reserva
     INSERT INTO reservas (codigo_reserva, estado, usuarios_id)
     VALUES (v_codigo_reserva, 'confirmada', p_usuario_id);
     
     SET v_reserva_id = LAST_INSERT_ID();
 
-    -- 2. Registrar el pago
     INSERT INTO pagos (reservas_id, total, metodo_pago, fecha, hora)
     VALUES (v_reserva_id, p_total, p_metodo_pago, CURDATE(), CURTIME());
     
     SET v_pago_id = LAST_INSERT_ID();
 
-    -- 3. Procesar cada pasajero
     WHILE v_index < v_num_pasajeros DO
-        -- Registrar persona
+
         INSERT INTO personas (
             primer_apellido, segundo_apellido, nombres, fecha_nacimiento, 
             genero, tipo_documento, numero_documento, telefono, correo, rol
@@ -158,7 +142,7 @@ BEGIN
         
         SET v_persona_id = LAST_INSERT_ID();
 
-        -- Registrar pasajero
+
         INSERT INTO pasajeros (condicion_infante, personas_id)
         VALUES (
             JSON_UNQUOTE(JSON_EXTRACT(p_pasajeros_json, CONCAT('$[', v_index, '].condicion_infante'))),
@@ -167,10 +151,10 @@ BEGIN
         
         SET v_pasajero_id = LAST_INSERT_ID();
 
-        -- Obtener asiento para este pasajero
+
         SET v_asiento_id = JSON_EXTRACT(p_asientos_json, CONCAT('$[', v_index, ']'));
 
-        -- Asignar asiento y crear ticket
+
         CALL AsignarPasajeroYAsiento(v_pasajero_id, v_asiento_id, v_reserva_id, v_pago_id);
 
         SET v_index = v_index + 1;
@@ -178,6 +162,5 @@ BEGIN
 
     COMMIT;
     
-    -- Devolver el código de reserva
     SELECT v_codigo_reserva AS codigo_reserva, v_reserva_id AS reserva_id;
 END 

@@ -36,6 +36,17 @@ router.get("/date:by", async (req, res) => {
     }
 });
 
+router.get("/near/date:by", async (req, res) => {
+    const by = req.params.by
+    try {
+        const data = await flight.getFlightNear2Months(by);
+        res.json(data)
+        console.log('Vuelos consumidos correctamente')
+    } catch (err) {
+        res.status(err.status || 500).json({ error: err.message });
+    }
+});
+
 router.get("/all/chairs:by", async(req,res) => {
     const by = req.params.by
     try {

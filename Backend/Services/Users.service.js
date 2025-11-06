@@ -52,7 +52,7 @@ class UsersService extends Base {
             const result = await query("CALL RegistFly(?,?,?,?,?)",newFly);
             const data = this.validateResult(result);
             return {
-                message:"User created successfully",
+                message:"Fly created successfully",
                 result: data
             };
         } catch (err) {
